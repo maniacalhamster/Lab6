@@ -84,11 +84,9 @@ class JournalEntry extends HTMLElement {
        */
 
       // CODE GOES HERE vvv
-
-
-
-
-
+      let img = document.createElement('img');
+      img.setAttribute('src', entry.image.src);
+      img.setAttribute('alt', entry.image.alt);
       // CODE GOES HERE ^^^
 
       /* ------------- do not edit this code, it is for your debugging purposes ------------- */
