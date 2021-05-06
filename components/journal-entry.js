@@ -71,7 +71,10 @@ class JournalEntry extends HTMLElement {
     /* 
      * TODO: set the entry title, date, and content fields in this component
      */
-    
+    let article = this.shadowRoot.querySelector('article');
+    article.querySelector('h2').innerHTML                       = entry.title;
+    article.querySelector("p[class='entry-date']").innerHTML    = entry.date;
+    article.querySelector("p[class='entry-content']").innerHTML = entry.content;
     // CODE GOES HERE
 
     if (entry.image) {
@@ -84,9 +87,11 @@ class JournalEntry extends HTMLElement {
        */
 
       // CODE GOES HERE vvv
-      let img = document.createElement('img');
-      img.setAttribute('src', entry.image.src);
-      img.setAttribute('alt', entry.image.alt);
+      let img   = document.createElement('img');
+      img.setAttribute('class', 'entry-image');
+      img.src   =  entry.image.src;
+      img.alt   =  entry.image.alt;
+      article.appendChild(img);
       // CODE GOES HERE ^^^
 
       /* ------------- do not edit this code, it is for your debugging purposes ------------- */
@@ -108,12 +113,16 @@ class JournalEntry extends HTMLElement {
        */
 
       // CODE GOES HERE vvv
+      let audio = document.createElement('audio');
+      audio.setAttribute('class', 'entry-audio');
+      audio.controls  = true;
 
+      let source  = document.createElement('source');
+      source.src  = entry.audio;
+      source.type = 'audio/mpeg';
 
-
-
-
-
+      audio.appendChild(source);
+      article.appendChild(audio);
       // CODE GOES HERE ^^^
       
 
@@ -162,12 +171,6 @@ customElements.define('journal-entry', JournalEntry);
  *   audio: 'foo.com/bar.mp3'
  * }
  */
-
-
-
-
-
-
 
 /* ------------- do not edit this code, it is for your debugging purposes ------------- */
 const exampleEntry = {
